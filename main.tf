@@ -16,7 +16,7 @@ module "ecs" {
 
   namespace  = "${module.label.namespace}"
   stage      = "${module.label.stage}"
-  name       = "${module.label.name}"
+  name       = "${module.label.namespace}"
 }
 module "container_definition" {
   source                       = "git::https://github.com/cloudposse/terraform-aws-ecs-container-definition.git?ref=tags/0.6.0"
