@@ -18,6 +18,7 @@ module "ecs" {
   stage      = "${module.label.stage}"
   name       = "${module.label.namespace}"
 }
+
 module "container_definition" {
   source                       = "git::https://github.com/cloudposse/terraform-aws-ecs-container-definition.git?ref=tags/0.6.0"
   container_name               = "${module.label.name}"
@@ -42,10 +43,6 @@ module "container_definition" {
     awslogs-group         = "${module.label.name}"
     awslogs-stream-prefix = "${module.label.name}"
   }
-}
-
-resource "aws_ecs_cluster" "ecs" {
-  name = "${module.label.name}"
 }
 
 resource "aws_security_group" "ecs_security_group" {
