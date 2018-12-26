@@ -75,7 +75,7 @@ module "ecs_alb_service_task" {
   task_cpu                  = "${var.container_cpu}"
   task_memory               = "${var.container_memory}"
 
-  ecs_cluster_arn           = "${aws_ecs_cluster.ecs.arn}"
+  ecs_cluster_arn           = "${module.ecs.ecs_arn}"
   launch_type               = "FARGATE"
   vpc_id                    = "${module.ecs.vpc_id}"
   security_group_ids        = ["${aws_security_group.ecs_security_group.id}"]
