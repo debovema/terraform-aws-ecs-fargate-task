@@ -31,6 +31,12 @@ variable "tags" {
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
+variable "ecs_arn" {
+  type        = "string"
+  default     = ""
+  description = "Optional ECS ARN, if not provided a new ECS cluster will be created"
+}
+
 variable "container_image" {
   type        = "string"
   description = "The container image to use"

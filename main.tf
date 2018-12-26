@@ -12,11 +12,13 @@ module "label" {
 }
 
 module "ecs" {
-  source     = "git::https://github.com/debovema/terraform-aws-ecs-fargate.git?ref=master"
+  source      = "git::https://github.com/debovema/terraform-aws-ecs-fargate.git?ref=master"
 
-  namespace  = "${module.label.namespace}"
-  stage      = "${module.label.stage}"
-  name       = "${module.label.namespace}"
+  namespace   = "${module.label.namespace}"
+  stage       = "${module.label.stage}"
+  name        = "${module.label.namespace}"
+
+  ecs_enabled = "${var.ecs_arn == ""}"
 }
 
 module "container_definition" {
@@ -75,7 +77,7 @@ module "ecs_alb_service_task" {
   task_cpu                  = "${var.container_cpu}"
   task_memory               = "${var.container_memory}"
 
-  ecs_cluster_arn           = "${module.ecs.ecs_arn}"
+  ecs_cluster_arn           = "${var.ecs_arn != "" ? var.ecs_arn : module.ecs.ecs_arn}"
   launch_type               = "FARGATE"
   vpc_id                    = "${module.ecs.vpc_id}"
   security_group_ids        = ["${aws_security_group.ecs_security_group.id}"]
