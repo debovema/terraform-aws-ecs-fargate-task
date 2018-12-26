@@ -40,7 +40,7 @@ module "container_definition" {
 
   log_options = {
     awslogs-region        = "${data.aws_region.current.name}"
-    awslogs-group         = "${module.label.name}"
+    awslogs-group         = "${module.label.namespace}"
     awslogs-stream-prefix = "${module.label.name}"
   }
 }
