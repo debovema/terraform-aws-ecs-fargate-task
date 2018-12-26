@@ -14,7 +14,7 @@ module "label" {
 module "ecs" {
   source      = "git::https://github.com/debovema/terraform-aws-ecs-fargate.git?ref=master"
 
-  namespace   = "${module.label.namespace}"
+  namespace   = "${module.label.name}"
   stage       = "${module.label.stage}"
   name        = "${module.label.namespace}"
 
