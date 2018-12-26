@@ -18,7 +18,7 @@ module "ecs" {
   stage       = "${module.label.stage}"
   name        = "${module.label.namespace}"
 
-  ecs_enabled = "${var.ecs_arn == ""}"
+  ecs_enabled = "${var.ecs_arn == "" ? "true" : "false"}"
 }
 
 module "container_definition" {
